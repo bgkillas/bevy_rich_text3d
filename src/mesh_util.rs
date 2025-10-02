@@ -1,11 +1,10 @@
+use crate::{layers::Layer, GlyphMeta, Text3dStyling};
+use bevy::mesh::{Indices, Mesh, VertexAttributeValues};
 use bevy::{
     color::{ColorToComponents, LinearRgba, Srgba},
     image::Image,
     math::{Rect, Vec2},
-    render::mesh::{Indices, Mesh, VertexAttributeValues},
 };
-
-use crate::{layers::Layer, GlyphMeta, Text3dStyling};
 
 // Take the allocation if possible but clear the data.
 macro_rules! recycle_mesh {

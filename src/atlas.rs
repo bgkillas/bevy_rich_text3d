@@ -6,12 +6,13 @@ use bevy::{
     render::render_resource::{Extent3d, TextureDimension, TextureFormat},
 };
 use rustc_hash::FxHashMap;
+use std::marker::PhantomData;
 
 use crate::styling::GlyphEntry;
 
+use bevy::asset::uuid::Uuid;
 #[cfg(feature = "reflect")]
 use bevy::{ecs::reflect::ReflectComponent, reflect::Reflect};
-
 /// Backing image handle and atlas of [`Text3d`].
 #[derive(Debug, Clone, Default, Asset)]
 #[cfg_attr(feature = "reflect", derive(Reflect))]
@@ -29,8 +30,10 @@ const PADDING: usize = 2;
 impl TextAtlas {
     /// The image used by [`TextAtlas::default()`].
     #[allow(deprecated)]
-    pub const DEFAULT_IMAGE: Handle<Image> =
-        Handle::weak_from_u128(0x9a5c50eb057602509c7836bb327807e1);
+    pub const DEFAULT_IMAGE: Handle<Image> = Handle::Uuid(
+        Uuid::from_u128(0x9a5c50eb057602509c7836bb327807e1),
+        PhantomData,
+    );
 
     /// Create a new empty [`TextAtlas`].
     ///

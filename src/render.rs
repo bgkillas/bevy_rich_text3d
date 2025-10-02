@@ -1,20 +1,3 @@
-use bevy::{
-    asset::{AssetId, Assets, RenderAssetUsages},
-    ecs::{
-        change_detection::DetectChanges,
-        system::{Local, Query, Res, ResMut},
-        world::{Mut, Ref},
-    },
-    image::Image,
-    math::{FloatOrd, IVec2, Rect, Vec2, Vec3, Vec4},
-    render::mesh::{Indices, Mesh, Mesh2d, Mesh3d, PrimitiveTopology, VertexAttributeValues},
-};
-use cosmic_text::{
-    ttf_parser::{Face, GlyphId},
-    Attrs, Buffer, Family, FontSystem, LayoutGlyph, Metrics, Shaping, Weight, Wrap,
-};
-use std::num::NonZero;
-
 use crate::{
     fetch::FetchedTextSegment,
     layers::{DrawRequest, DrawType, Layer},
@@ -26,6 +9,22 @@ use crate::{
     SegmentStyle, StrokeJoin, Text3dBounds, Text3dDimensionOut, Text3dPlugin, Text3dStyling,
     TextAtlas, TextAtlasHandle, TextRenderer,
 };
+use bevy::mesh::{Indices, Mesh, Mesh2d, Mesh3d, PrimitiveTopology, VertexAttributeValues};
+use bevy::{
+    asset::{AssetId, Assets, RenderAssetUsages},
+    ecs::{
+        change_detection::DetectChanges,
+        system::{Local, Query, Res, ResMut},
+        world::{Mut, Ref},
+    },
+    image::Image,
+    math::{FloatOrd, IVec2, Rect, Vec2, Vec3, Vec4},
+};
+use cosmic_text::{
+    ttf_parser::{Face, GlyphId},
+    Attrs, Buffer, Family, FontSystem, LayoutGlyph, Metrics, Shaping, Weight, Wrap,
+};
+use std::num::NonZero;
 
 fn default_mesh() -> Mesh {
     Mesh::new(PrimitiveTopology::TriangleList, RenderAssetUsages::all())
